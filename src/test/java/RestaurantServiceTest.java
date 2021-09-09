@@ -62,6 +62,7 @@ class RestaurantServiceTest {
 
         assertThrows(restaurantNotFoundException.class,()->service.removeRestaurant("Pantry d'or"));
     }
+    // TDD test cases
 
     @Test
     public void add_restaurant_should_increase_list_of_restaurants_size_by_1(){
@@ -74,4 +75,15 @@ class RestaurantServiceTest {
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    @Test
+    public void return_the_total_order_value_from_the_menu() throws itemNotFoundException {
+        restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+
+        Item Item_var = restaurant.getPrice("Sweet corn soup");
+
+        assertEquals(119,Item_var.getPrice());
+    }
 }
